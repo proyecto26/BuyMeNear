@@ -21,7 +21,6 @@ import {
  */
 @nearBindgen
 export class BuyMeNear {
-  users = [];
   donations: u32 = 0;
 
   getTotalDonations(): u32 {
