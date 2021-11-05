@@ -1,28 +1,65 @@
 /*
  * AssemblyScript smart contract for Donations
- * 
+ *
  * Learn more about writing NEAR smart contracts with AssemblyScript:
  * https://docs.near.org/docs/develop/contracts/as/intro
  *
  */
 
-import {
-  Context,
-  logging,
-  u128,
-  ContractPromiseBatch,
-} from "near-sdk-as";
+import { Context, logging, u128, ContractPromiseBatch } from "near-sdk-as";
 import { Donation } from "./models/donation";
 import { User } from "./models/user";
-import { donationStorage, userStorage, followerStorage, userAddresses } from "./storage";
+import {
+  donationStorage,
+  userStorage,
+  followerStorage,
+  userAddresses,
+} from "./storage";
 
 /**
  * Singleton Smart Contract
  */
 @nearBindgen
 export class BuyMeNear {
-  users = []
+  users = [];
   donations: u32 = 0;
+
+  getTotalDonations(): u32 {
+    return this.donations;
+  }
+
+  /**
+   * Get the list of donations for a user
+   * @param accountId - The accountId of the user
+   * @returns Returns the list of donations for a user
+   */
+  getDonations(accountId: string): Donation[] {
+    return donationStorage.get(accountId) || [];
+  }
+
+  getAllUserAddresses(): string[] {
+    return userAddresses.values();
+  }
+
+  getAllUsers(): User[] {
+    return this.getAllUserAddresses().map(
+      (accountId) => userStorage.get(accountId) as User
+    );
+  }
+
+  getUserProfile(accountId: string): User | null {
+    return userStorage.get(accountId);
+  }
+
+  /**
+   * Get the list of followers for a user
+   * @param accountId - The accountId of the user
+   * @returns Returns the list of followers for a user
+   */
+  getFollowers(accountId: string): string[] {
+    return followerStorage.get(accountId) || [];
+  }
+
   /**
    * Update the profile of a user
    * @param firstName - The first name of the user
@@ -53,15 +90,11 @@ export class BuyMeNear {
     return user;
   }
 
-  getUserProfile(accountId: string): User | null {
-    return userStorage.get(accountId);
-  }
-
   /**
    * Send a donation to a user
    * @param accountId - The accountId of the user to donate to
    * @param amount - The amount of the donation
-   * 
+   *
    */
   sendDonation(accountId: string, amount: u128): Donation {
     const sender = Context.sender;
@@ -78,19 +111,11 @@ export class BuyMeNear {
       donations.push(donation);
       donationStorage.set(accountId, donations);
       logging.log(`Adding donation for account "${accountId}"`);
+      this.donations += 1;
       return donation;
     } else {
       throw new Error(`User ${accountId} does not exist`);
     }
-  }
-
-  /**
-   * Get the list of donations for a user
-   * @param accountId - The accountId of the user
-   * @returns Returns the list of donations for a user
-   */
-  getDonations(accountId: string): Donation[] {
-    return donationStorage.get(accountId) || [];
   }
 
   /**
@@ -111,22 +136,5 @@ export class BuyMeNear {
     } else {
       throw new Error(`User ${accountId} does not exist`);
     }
-  }
-
-  /**
-   * Get the list of followers for a user
-   * @param accountId - The accountId of the user
-   * @returns Returns the list of followers for a user
-   */
-  getFollowers(accountId: string): string[] {
-    return followerStorage.get(accountId) || [];
-  }
-
-  getAllUserAddresses(): string[] {
-    return userAddresses.values();
-  }
-
-  getAllUsers(): User[] {
-    return this.getAllUserAddresses().map((accountId) => userStorage.get(accountId) as User);
   }
 }
