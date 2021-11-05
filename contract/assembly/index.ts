@@ -33,21 +33,21 @@ export class BuyMeNear {
    * @returns Returns the list of donations for a user
    */
   getDonations(accountId: string): Donation[] {
-    return donationStorage.get(accountId) || [];
+    return donationStorage.get(accountId, []) as Donation[];
   }
 
   getAllUserAddresses(): string[] {
-    return userAddresses.values();
+    return userAddresses.values() || [];
+  }
+
+  getUserProfile(accountId: string): User {
+    return userStorage.get(accountId) as User;
   }
 
   getAllUsers(): User[] {
-    return this.getAllUserAddresses().map(
-      (accountId) => userStorage.get(accountId) as User
+    return this.getAllUserAddresses().map<User>(
+      (accountId: string) => userStorage.get(accountId) as User
     );
-  }
-
-  getUserProfile(accountId: string): User | null {
-    return userStorage.get(accountId);
   }
 
   /**
@@ -56,7 +56,7 @@ export class BuyMeNear {
    * @returns Returns the list of followers for a user
    */
   getFollowers(accountId: string): string[] {
-    return followerStorage.get(accountId) || [];
+    return followerStorage.get(accountId, []) as string[];
   }
 
   /**
@@ -75,7 +75,7 @@ export class BuyMeNear {
     avatarUrl: string
   ): User {
     const accountId = Context.sender;
-    let user = userStorage.get(accountId) || new User(accountId);
+    const user = userStorage.get(accountId, new User(accountId)) as User;
     if (!userAddresses.has(accountId)) {
       userAddresses.add(accountId);
     }
