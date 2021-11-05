@@ -1,4 +1,4 @@
-import { context, RNG, u128 } from "near-sdk-as";
+import { context, u128 } from "near-sdk-as";
 import { AccountID, Timestamp } from "../utils";
 
 @nearBindgen

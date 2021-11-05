@@ -13,7 +13,7 @@ import {
   donationStorage,
   userStorage,
   followerStorage,
-  userAddresses,
+  userAccounts,
 } from "./storage";
 
 /**
@@ -36,8 +36,8 @@ export class BuyMeNear {
     return donationStorage.get(accountId, []) as Donation[];
   }
 
-  getAllUserAddresses(): string[] {
-    return userAddresses.values() || [];
+  getUserAccounts(): string[] {
+    return userAccounts.values() || [];
   }
 
   getUserProfile(accountId: string): User {
@@ -45,7 +45,7 @@ export class BuyMeNear {
   }
 
   getAllUsers(): User[] {
-    return this.getAllUserAddresses().map<User>(
+    return this.getUserAccounts().map<User>(
       (accountId: string) => userStorage.get(accountId) as User
     );
   }
@@ -76,8 +76,8 @@ export class BuyMeNear {
   ): User {
     const accountId = Context.sender;
     const user = userStorage.get(accountId, new User(accountId)) as User;
-    if (!userAddresses.has(accountId)) {
-      userAddresses.add(accountId);
+    if (!userAccounts.has(accountId)) {
+      userAccounts.add(accountId);
     }
     user.firstName = firstName;
     user.lastName = lastName;

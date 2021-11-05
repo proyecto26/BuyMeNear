@@ -2,11 +2,22 @@ import { PersistentMap, PersistentSet } from "near-sdk-as";
 import { Donation } from "./models/donation";
 import { User } from "./models/user";
 
-// A list of users
+/**
+ * List of users
+ * accountId -> User
+ */
 export const userStorage = new PersistentMap<string, User>("users");
-// A list of donations
+/**
+ * List of donations
+ * accountId -> Donation[]
+ */
 export const donationStorage = new PersistentMap<string, Donation[]>("donations");
-// A list of followers
+/**
+ * List of followers
+ * accountId -> Set<accountId>
+ */
 export const followerStorage = new PersistentMap<string, string[]>("followers");
-
-export const userAddresses = new PersistentSet<string>("userAddresses");
+/**
+ * List of user accounts
+ */
+export const userAccounts = new PersistentSet<string>("userAccounts");

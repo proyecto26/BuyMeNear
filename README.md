@@ -1,6 +1,8 @@
 # BuyMeNear
 ==================
 
+Testnet Explorer: https://explorer.testnet.near.org/transactions/2xELnKYabk9jYZaF8PpoBX9ya8utUfjnt7XvbL9cKQNr
+
 This [React] app was initialized with [create-near-app]
 
 
