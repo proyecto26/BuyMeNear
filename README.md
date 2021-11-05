@@ -54,7 +54,7 @@ Ensure that it's installed with `near --version` (or `npx near --version`)
 Step 1: Create an account for the contract
 ------------------------------------------
 
-Each account on NEAR can have at most one contract deployed to it. If you've already created an account such as `your-name.testnet`, you can deploy your contract to `NearMeCoffee.your-name.testnet`. Assuming you've already created an account on [NEAR Wallet], here's how to create `NearMeCoffee.your-name.testnet`:
+Each account on NEAR can have at most one contract deployed to it. If you've already created an account such as `your-name.testnet`, you can deploy your contract to `BuyMeNear.your-name.testnet`. Assuming you've already created an account on [NEAR Wallet], here's how to create `BuyMeNear.your-name.testnet`:
 
 1. Authorize NEAR CLI, following the commands it gives you:
 
@@ -62,7 +62,7 @@ Each account on NEAR can have at most one contract deployed to it. If you've alr
 
 2. Create a subaccount (replace `YOUR-NAME` below with your actual account name):
 
-      near create-account NearMeCoffee.YOUR-NAME.testnet --masterAccount YOUR-NAME.testnet
+      near create-account BuyMeNear.YOUR-NAME.testnet --masterAccount YOUR-NAME.testnet
 
 
 Step 2: set contract name in code
@@ -70,7 +70,7 @@ Step 2: set contract name in code
 
 Modify the line in `src/config.js` that sets the account name of the contract. Set it to the account id you used above.
 
-    const CONTRACT_NAME = process.env.CONTRACT_NAME || 'NearMeCoffee.YOUR-NAME.testnet'
+    const CONTRACT_NAME = process.env.CONTRACT_NAME || 'BuyMeNear.YOUR-NAME.testnet'
 
 
 Step 3: deploy!

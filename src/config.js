@@ -1,4 +1,4 @@
-const CONTRACT_NAME = process.env.CONTRACT_NAME ||'NearMeCoffee'
+const CONTRACT_NAME = process.env.CONTRACT_NAME ||'BuyMeNear'
 
 function getConfig(env) {
   switch (env) {
