@@ -1,9 +1,27 @@
-import { setGreeting } from '..'
-import { storage, Context } from 'near-sdk-as'
+import { BuyMeNear } from '..'
+import { storage, Context, logging } from 'near-sdk-as'
 
-describe('Greeting ', () => {
-  it('should be set and read', () => {
-    setGreeting('hello world')
-    storage.get<string>(Context.sender)
-  })
-})
+describe('Obtener el total de donaciones', () => {
+  it('Deberia estar en cero', () => {
+    const buymenear = new BuyMeNear()
+    expect(buymenear.getTotalDonations()).toBe(0, "Tiene que ser cero");
+  });
+
+});
+
+describe('Probando cuentas', () => {
+  /*it('No deberian haber cuentas', () => {
+    const buymenear = new BuyMeNear()
+    var arr: string[] = [];
+    expect(buymenear.getAllUserAddresses()).toBe(arr, "No hay cuentas en este momento");
+  });*/
+
+  it('No deberian haber cuentas', () => {
+    const buymenear = new BuyMeNear()
+    var arr: string[] = [];
+    var user = buymenear.getUserProfile('managua.near');
+    console.log("" + user?.balance);
+    expect(user).actual;
+  });
+
+});
