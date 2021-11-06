@@ -1,3 +1,5 @@
+import { u128 } from "near-sdk-core";
+
 import { BuyMeNear } from '..'
 
 describe('BuyMeNear', () => {
@@ -48,5 +50,23 @@ describe('BuyMeNear', () => {
     buymenear.addFollower(account.userId, follower.userId);
 
     expect(buymenear.getFollowers(account.userId).length).toBeGreaterThan(0, "should have a follower");
+  });
+
+  it('should have donations when money is transfer', () => {
+    const buymenear = new BuyMeNear();
+    const account = buymenear.updateUserProfile(
+      'J.D',
+      'Nicholls',
+      'Full-Stack Developer | Open Source Contributor',
+      `I am an Open Source Contributor, Full-Stack Developer with a background in web, mobile and game development, having 9+ years of practice and leadership building interactive experiences.`,
+      'https://avatars.githubusercontent.com/u/2154886?v=4'
+    );
+    expect(buymenear.getDonations(account.userId).length).toBe(0, "should have no donations");
+    expect(buymenear.getUserProfile(account.userId).balance).toBe(u128.Zero, "should have empty balance");
+
+    buymenear.sendDonation(account.userId, u128.One);
+
+    expect(buymenear.getDonations(account.userId).length).toBeGreaterThan(0, "should have donations");
+    expect(buymenear.getTotalDonations()).toBe(1, "should have donations");
   });
 });
