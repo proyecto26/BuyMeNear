@@ -1,7 +1,98 @@
 # BuyMeNear
 ==================
 
-Testnet Explorer: https://explorer.testnet.near.org/transactions/2xELnKYabk9jYZaF8PpoBX9ya8utUfjnt7XvbL9cKQNr
+## Smart Contract
+
+- **`yarn dev:deploy:contract`**:
+```cmd
+Starting deployment. Account id: dev-1636154918970-53430427681370, node: https://rpc.testnet.near.org, helper: https://helper.testnet.near.org, file: ./out/main.wasm
+Transaction Id yuGRo7a9CitqgZX63n3UuQetGfcBy85gYqBnjhYpwHG
+To see the transaction in the transaction explorer, please open this url in your browser
+https://explorer.testnet.near.org/transactions/yuGRo7a9CitqgZX63n3UuQetGfcBy85gYqBnjhYpwHG
+Done deploying to dev-1636154918970-53430427681370
+```
+
+- **`near view dev-1636154918970-53430427681370 getTotalDonations '{}'`**:
+```cmd
+View call: dev-1636154918970-53430427681370.getTotalDonations({})
+0
+```
+
+- **`near call dev-1636154918970-53430427681370 updateUserProfile '{ "firstName": "Juan David", "lastName": "Nicholls Cardona", "shortBio": "Full-Stack Developer | Open Source Contributor", "bio": "I am an Open Source Contributor, Full-Stack Developer with a background in web, mobile and game development, having 9+ years of practice and leadership building interactive experiences.", "avatarUrl": "https://avatars.githubusercontent.com/u/2154886?v=4" }' --accountId jdnichollsc.testnet`**:
+```cmd
+Receipt: FP7xBCzVqe6q19xzmKoqjG3kU7VvCwicC7LCz3aTdDJ1
+        Log [dev-1636154918970-53430427681370]: Updating user profile for account "jdnichollsc.testnet"
+Transaction Id 4rhMcfTfKdSo3cwPBWv9hPM2jBFyCLfVFY6DREdr5DHA
+To see the transaction in the transaction explorer, please open this url in your browser
+https://explorer.testnet.near.org/transactions/4rhMcfTfKdSo3cwPBWv9hPM2jBFyCLfVFY6DREdr5DHA
+{
+  balance: '0',
+  firstName: 'Juan David',
+  lastName: 'Nicholls Cardona',
+  shortBio: 'Full-Stack Developer | Open Source Contributor',
+  bio: 'I am an Open Source Contributor, Full-Stack Developer with a background in web, mobile and game development, having 9+ years of practice and leadership building interactive experiences.',
+  imageUrl: 'https://avatars.githubusercontent.com/u/2154886?v=4',
+  createAt: '1636161737896764161',
+  userId: 'jdnichollsc.testnet'
+}
+```
+
+- **`near view dev-1636154918970-53430427681370 getUserAccounts '{}'`**
+```cmd
+View call: dev-1636154918970-53430427681370.getUserAccounts({})
+[ 'jdnichollsc.testnet' ]
+```
+
+- **`near view dev-1636154918970-53430427681370 getUserProfile '{ "accountId": "jdnichollsc.testnet" }'`**
+```cmd
+View call: dev-1636154918970-53430427681370.getUserProfile({ "accountId": "jdnichollsc.testnet" })
+{
+  balance: '0',
+  firstName: 'Juan David',
+  lastName: 'Nicholls Cardona',
+  shortBio: 'Full-Stack Developer | Open Source Contributor',
+  bio: 'I am an Open Source Contributor, Full-Stack Developer with a background in web, mobile and game development, having 9+ years of practice and leadership building interactive experiences.',
+  imageUrl: 'https://avatars.githubusercontent.com/u/2154886?v=4',
+  createAt: '1636161737896764161',
+  userId: 'jdnichollsc.testnet'
+}
+```
+
+- **`near call dev-1636154918970-53430427681370 sendDonation '{ "accountId": "jdnichollsc.testnet", "amount": "200000000000000000000000" }' --accountId jdnichollsc.testnet`**:
+```cmd
+Scheduling a call: dev-1636154918970-53430427681370.sendDonation({ "accountId": "jdnichollsc.testnet", "amount": "200000000000000000000000" })
+Receipts: hmd4SnN8Ck4EbQxg5XxoHu2YsjnhukLEGew8Jm6kRD3, DDysF1NDSctikKNNAxFYccjuJzcYP5bxcSNF1ZYkM6Cq
+        Log [dev-1636154918970-53430427681370]: Transferring 200000000000000000000000 to jdnichollsc.testnet
+        Log [dev-1636154918970-53430427681370]: Adding donation for account "jdnichollsc.testnet"
+Transaction Id BK6PdBb15DmSFWnvJ3WRV2NmDeu3ADN9wjgeMfyGQmb7
+To see the transaction in the transaction explorer, please open this url in your browser
+https://explorer.testnet.near.org/transactions/BK6PdBb15DmSFWnvJ3WRV2NmDeu3ADN9wjgeMfyGQmb7
+{
+  refCode: 'BD-2658987258',
+  amount: '400000000000000000000000',
+  createAt: '1636163214246431911',
+  createdBy: 'jdnichollsc.testnet'
+}
+```
+
+- **`near view dev-1636154918970-53430427681370 getDonations '{ "accountId": "jdnichollsc.testnet" }'`**:
+```cmd
+View call: dev-1636154918970-53430427681370.getDonations({ "accountId": "jdnichollsc.testnet" })
+[
+  {
+    refCode: 'BD-1891448315',
+    amount: '200000000000000000000000',
+    createAt: '1636163149456726356',
+    createdBy: 'jdnichollsc.testnet'
+  },
+  {
+    refCode: 'BD-2658987258',
+    amount: '400000000000000000000000',
+    createAt: '1636163214246431911',
+    createdBy: 'jdnichollsc.testnet'
+  }
+]
+```
 
 This [React] app was initialized with [create-near-app]
 

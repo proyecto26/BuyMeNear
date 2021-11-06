@@ -22,7 +22,7 @@ describe('BuyMeNear', () => {
       'David',
       'Gonzalez',
       'Near Developer',
-      `I'm a experienced Developer looking for job opportunities with Blockchain and Smart contracts`,
+      'I am an experienced Developer looking for job opportunities with Blockchain and Smart contracts',
       'https://avatars.githubusercontent.com/u/1445496?v=4'
     );
     expect(buymenear.getUserAccounts().length).toBe(1, "should be 1");
@@ -35,7 +35,7 @@ describe('BuyMeNear', () => {
       'J.D',
       'Nicholls',
       'Full-Stack Developer | Open Source Contributor',
-      `I am an Open Source Contributor, Full-Stack Developer with a background in web, mobile and game development, having 9+ years of practice and leadership building interactive experiences.`,
+      'I am an Open Source Contributor, Full-Stack Developer with a background in web, mobile and game development, having 9+ years of practice and leadership building interactive experiences.',
       'https://avatars.githubusercontent.com/u/2154886?v=4'
     );
     const follower = buymenear.updateUserProfile(

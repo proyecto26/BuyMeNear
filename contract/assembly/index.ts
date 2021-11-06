@@ -110,7 +110,7 @@ export class BuyMeNear {
       donations.push(donation);
       donationStorage.set(accountId, donations);
       logging.log(`Adding donation for account "${accountId}"`);
-      this.donations += 1;
+      this.donations++;
       return donation;
     } else {
       throw new Error(`User ${accountId} does not exist`);
