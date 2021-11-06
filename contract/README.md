@@ -24,3 +24,9 @@ Exploring The Code
   [create-near-app]: https://github.com/near/create-near-app
   [Node.js]: https://nodejs.org/en/download/package-manager/
   [as-pect]: https://www.npmjs.com/package/@as-pect/cli
+
+
+Advanced Topics
+==================
+1. [Class ContractPromiseBatch](https://near.github.io/near-sdk-as/classes/_sdk_core_assembly_promise_.contractpromisebatch.html)
+2. [Orientation to Cross-contract Calls](https://github.com/near-examples/cross-contract-calls/tree/main/contracts/00.orientation)
