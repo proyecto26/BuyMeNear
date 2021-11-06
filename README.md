@@ -1,7 +1,7 @@
 # BuyMeNear
 ==================
 
-## Smart Contract
+## [Smart Contract](contract/assembly/index.ts)
 
 - **`yarn dev:deploy:contract`**:
 ```cmd
