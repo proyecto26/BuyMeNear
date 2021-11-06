@@ -9,7 +9,7 @@ describe('BuyMeNear', () => {
     expect(buymenear.getUserAccounts().length).toBe(0, "should be 0");
   });
 
-  it('should total donations be zero when contract is created', () => {
+  it('should total donations be zero when the contract is created', () => {
     const buymenear = new BuyMeNear();
     expect(buymenear.getTotalDonations()).toBe(0, "should be 0");
   });
