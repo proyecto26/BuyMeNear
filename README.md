@@ -1,6 +1,8 @@
 # BuyMeNear
 ==================
 
+![BuyMeNear](docs/screenshots/Web%201920%20–%2012.png)
+
 ## [Smart Contract](contract/assembly/index.ts)
 
 - **`yarn dev:deploy:contract`**:
